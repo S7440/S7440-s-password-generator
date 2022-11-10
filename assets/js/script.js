@@ -20,12 +20,12 @@ function getOptions() {
     return null
   }
 
-  
+  //These vars serve the passwordOptions. When they are called upon in the line of duty, they serve to notify you that you must get with this or get with that.
   var hasUpperCase = confirm("click okay to include uppercase letters")
   var hasLowerCase = confirm("click to confirm uppercase")
   var hasSpecialChar = confirm('click for special')
   var hasNumbers = confirm("click for num")
-
+  //this if is used to ensure that users select a character type for their password.
   if(
     hasUpperCase === false && 
     hasLowerCase === false &&
@@ -35,7 +35,7 @@ function getOptions() {
     alert("must select at least on char type")
     return null
   }
-
+  // Returns with true/false values in order to gather what the heck the user wants.
   var passwordOptions = {
     length: length,
     hasUpperCase: hasUpperCase,
@@ -46,22 +46,22 @@ function getOptions() {
 
   return passwordOptions
 }
-
+//Heres where the randomness comes in. Someone had to do it right?
 function getRandom(arr){
   var randomI = Math.floor(Math.random()*arr.length)
   var randomEl = arr[randomI]
   return randomEl
 }
-
+// this is the function that assembles the password from selected character types.
 function generatePassword() {
   var options = getOptions()
   var result = []
   var possibleChars = []
   var guaranteedChars = []
-
+  //if an option returns false it won't use that option
   if(!options)
   return null
-
+  //The following four if statements are whats used to take all your possible characters and concatinatorize them. The guaranteedChar is to ensure that you end up with the right character because of gross math stuff.
   if(options.hasUpperCase) {
     possibleChars = possibleChars.concat(upperCase)
     guaranteedChars.push(getRandom(upperCase))
@@ -81,7 +81,7 @@ function generatePassword() {
     possibleChars = possibleChars.concat(numbers)
     guaranteedChars.push(getRandom(numbers))
   }
-
+  //these for dealios start at the first character and continue running their random chaos math to return your character from the array and continue until it reaches the end of your password.
   for(var i = 0; i < options.length; i++) {
     var possibleChar = getRandom(possibleChars)
     result.push(possibleChar)
@@ -90,6 +90,7 @@ function generatePassword() {
   for(var i = 0; i < guaranteedChars.length; i++) {
     result[i]=guaranteedChars[i]
   }
+  //the join will assemble your results into one string :)
   return result.join("")
 }
 
