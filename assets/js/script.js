@@ -22,9 +22,9 @@ function getOptions() {
 
   //These vars serve the passwordOptions. When they are called upon in the line of duty, they serve to notify you that you must get with this or get with that.
   var hasUpperCase = confirm("click okay to include uppercase letters")
-  var hasLowerCase = confirm("click to confirm uppercase")
-  var hasSpecialChar = confirm('click for special')
-  var hasNumbers = confirm("click for num")
+  var hasLowerCase = confirm("click okay to confirm uppercase")
+  var hasSpecialChar = confirm('click okay to be/include the special characters')
+  var hasNumbers = confirm("click okay to include numbers")
   //this if is used to ensure that users select a character type for their password.
   if(
     hasUpperCase === false && 
@@ -32,7 +32,7 @@ function getOptions() {
     hasSpecialChar === false &&
     hasNumbers === false 
   ){
-    alert("must select at least on char type")
+    alert("must select at least on character type")
     return null
   }
   // Returns with true/false values in order to gather what the heck the user wants.
